@@ -54,7 +54,7 @@ MatchGame.renderCards = function(cardValues, $game) {
       color: color,
       isFlipped: false
     };
-    var $newCard = $("<div class="card col-xs-3"></div>");
+    var $newCard = $("<div class='card col-xs-3'></div>");
     $newCard.data(data);
     $game.append($newCard);
 
@@ -67,4 +67,4 @@ MatchGame.renderCards = function(cardValues, $game) {
   Updates styles on flipped cards depending whether they are a match or not.
  */
 
-MatchGame.flipCard = function($card, $game) {
+MatchGame.flipCard = function($card, $game) {}
