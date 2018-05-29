@@ -74,11 +74,15 @@ MatchGame.flipCard = function($card, $game) {
   if ($card.data('isFlipped')){
     return;
   };
-  $('.card').css("background-color", $card.data('color'));
-  $('.card').text($card.data('value'));
-  $card.data('isFlipped = true')  ;
-  flippedCards.append($card);
-  if (flippedCards.length === 2){
+
+  $card.css("background-color", $card.data('color'));
+  $card.text($card.data('value'));
+  $card.data('isFlipped', 'true');
+
+  var flippedCards = $game.data('flippedCards')
+  flippedCards.push($card);
+
+  if (flippedCards.length > 1){
     if (flippedCards[0]===flippedCards[1]){
       $card.css("background-color", "rgb(153, 153, 153)");
       $card.css("color", "rgb(204, 204, 204)");
