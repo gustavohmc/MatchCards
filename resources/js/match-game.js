@@ -61,7 +61,7 @@ MatchGame.renderCards = function(cardValues, $game) {
     $game.append($newCard);
   };
   $('.card').click(function(){
-    flipCard($(this), $game);
+    MatchGame.flipCard($(this), $game);
   });
 };
 
@@ -72,13 +72,12 @@ MatchGame.renderCards = function(cardValues, $game) {
 
 MatchGame.flipCard = function($card, $game) {
 
-  if ($card.isFlipped){
-    console.log($card.idFlipped);
+  if ($card.data('isFlipped')){
     return;
   };
   $('.card').css("background-color", $card[color]);
-  $('.card').text($card.value);
-  $card.isFlipped = true;
+  $('.card').text($card.data('value'));
+  $card.data('isFlipped = true');
   flippedCards.append($card);
   if (flippedCards.length === 2){
     if (flippedCards[0]===flippedCards[1]){
