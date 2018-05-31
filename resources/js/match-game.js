@@ -16,7 +16,7 @@ $(document).ready(function(){
 MatchGame.generateCardValues = function () {
   var sortedNumbers = [];
 
-  for (i=1; i<9; i++){
+  for (var i=1; i<9; i++){
     sortedNumbers.push(i);
     sortedNumbers.push(i);
   }
@@ -55,7 +55,7 @@ MatchGame.renderCards = function(cardValues, $game) {
     'hsl(310,85%,65%)',
     'hsl(360,85%,65%)'];
 
-  for (i=0; i<cardValues.length; i++){
+  for (var i=0; i<cardValues.length; i++){
     var $card = $('<div class="card col-xs-3"></div>');
     var value = cardValues[i];
     var color = cardColors[value -1];
@@ -91,7 +91,7 @@ MatchGame.flipCard = function($card, $game) {
     .text($card.data('value'))
     .data('flipped', true);
 
-  var flipData = $game.data('flippedCars');
+  var flipData = $game.data('flippedCards');
   flipData.push($card);
 
   if (flipData.length > 1){
@@ -102,8 +102,10 @@ MatchGame.flipCard = function($card, $game) {
 
     if (card1Val === card2Val){
       console.log("match");
-      $card.css("background-color", "rgb(153, 153, 153)");
-      $card.css("color", "rgb(204, 204, 204)");
+      card1.css("background-color", "rgb(153, 153, 153)");
+      card1.css("color", "rgb(204, 204, 204)");
+      card2.css("background-color", "rgb(153, 153, 153)");
+      card2.css("color", "rgb(204, 204, 204)");
     }else{
       console.log("no match");
       $card.css("background-color", "rgb(32, 64, 86)")
@@ -112,6 +114,6 @@ MatchGame.flipCard = function($card, $game) {
     }
   }
 
-  $game.data('flippedCars', []);
+  $game.data('flippedCards', []);
 
 };
