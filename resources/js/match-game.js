@@ -91,29 +91,30 @@ MatchGame.flipCard = function($card, $game) {
     .text($card.data('value'))
     .data('flipped', true);
 
-  var flipData = $game.data('flippedCards');
-  flipData.push($card);
+  var flippedCards = $game.data('flippedCards');
+  flippedCards.push($card);
 
-  if (flipData.length > 1){
-    var card1 = flipData[0];
-    var card2 = flipData[1];
-    var card1Val = parseInt(card1.data('value'));
-    var card2Val = parseInt(card2.data('value'));
-
-    if (card1Val === card2Val){
-      console.log("match");
-      card1.css("background-color", "rgb(153, 153, 153)");
-      card1.css("color", "rgb(204, 204, 204)");
-      card2.css("background-color", "rgb(153, 153, 153)");
-      card2.css("color", "rgb(204, 204, 204)");
-    }else{
-      console.log("no match");
-      $card.css("background-color", "rgb(32, 64, 86)")
-        .text("")
-        .data('flipped', false);
+  if (flippedCards.length === 2) {
+    if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
+      var matchCss = {
+        backgroundColor: 'rgb(153, 153, 153)',
+        color: 'rgb(204, 204, 204)'
+      };
+      flippedCards[0].css(matchCss);
+      flippedCards[1].css(matchCss);
+    } else {
+      var card1 = flippedCards[0];
+      var card2 = flippedCards[1];
+      window.setTimeout(function() {
+        card1.css('background-color', 'rgb(32, 64, 86)')
+            .text('')
+            .data('flipped', false);
+        card2.css('background-color', 'rgb(32, 64, 86)')
+            .text('')
+            .data('flipped', false);
+      }, 350);
     }
+    $game.data('flippedCards', []);
   }
-
-  $game.data('flippedCards', []);
 
 };
